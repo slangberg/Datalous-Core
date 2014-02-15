@@ -81,6 +81,12 @@ cursor: help;
 
 .popover{color:#000!important;width:260px!important;}
 
-.locinfo{margin-left:-44px;}
+.locinfo{margin-left:-30px;}
 
-.tokeninfo{margin-left:-188px;}
+.tokeninfo{margin-left:-170px;}
+
+#description .modal-body{
+	line-height:145%;
+	font-size:1.04em;
+	font-weight:500;
+}

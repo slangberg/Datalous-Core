@@ -1,4 +1,10 @@
-// JavaScript Document
+/*!
+ * Datalous Javascript Mapping Library Demo File v2.0
+ * https://github.com/slangberg/Datalous-Core
+ * Copyright 2013 Sam Langberg (samlangberg.com)
+ * Released under the Creative Commons Attribution-NonCommercial 4.0 International License
+ */
+ 
 
 var astarcore=new astarCore(); 
 var application =new applicationCore(astarcore);
@@ -8,18 +14,48 @@ var pepoledata=new personData();
 var urldata=new urlData();
 var reporter=new reporter();
 var App = $.extend({},urldata, application, placedata,startdata,pepoledata,reporter);
+var skiplocal = true;//chnage this to read from local starge instead of ajax
 
 $(document).ready(function(e) {
 App.startTimer("init");//check reporter
 
-if(!App.getFromLocalData())//check to see if local data is present prevents uneessary data transfers
+  	var table=document.getElementById("grid");
+
+	var tbody=document.createElement("tbody");
+	table.appendChild(tbody);
+
+	var tr=document.createElement("tr");
+	tbody.appendChild(tr);
+
+	var x, y;
+
+
+	for(y=0; y<72; ++y) {
+		var tr=document.createElement("tr");
+		tbody.appendChild(tr);
+
+		for(x=0; x<152; ++x) {
+		    var td=document.createElement("td");
+			td.id="board_"+x+"_"+y;
+			td.className="tile";
+			td.setAttribute("x", x);
+			td.setAttribute("y", y);
+			tr.appendChild(td);
+		}
+	}
+	
+
+if(!App.getFromLocalData() || skiplocal)//check to see if local data is present prevents uneessary data transfers
 {
-$.getJSON("sql/getmapdata.php",function(result)//this function gets map data from the database, outside the object to prevent jquery obj conflicts
+$.getJSON("results.json",function(result)//this function gets map data from the database, outside the object to prevent jquery obj conflicts
 	{
+		console.log("Mapdata is "+ App.kbSize(result));
 		App.construct(result);//check map dataobjects file
 		App.runUrl();// runs the query string check - look at urldata
 		App.stopTimer("init"," laod done from jason");
 	}); 
+	
+	$('#description').modal('toggle');//actitcavte intro modal
 }
 
 else
@@ -28,6 +64,7 @@ else
 	App.runUrl();
 	App.stopTimer("init","load done from local");	
 }
+
 
 
 $('.infopoint').popover({trigger:'hover',placement:'bottom',delay: { show: 400, hide: 100 }});//actiavtes info point popovers
@@ -153,13 +190,13 @@ function setflagbtn(){//this appys complex functilaity to the table btns
  switch(action)//runs the right application method based on the type of object chosen
   {
 	case "person":
-	App.setPersonAs(index,$target.data('type'));
+	App.setPersonAs(index,target.data('type'));
 	break;
 	case "startlocation":
-	App.setStartAs(index,$target.data('type'));
+	App.setStartAs(index,target.data('type'));
 	break;
 	case "place":
-	App.setPlaceAs(index,$target.data('type'));
+	App.setPlaceAs(index,target.data('type'));
 	break;
 	default:
 	console.error("setflagbtn error: not vaild action type");

@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Display Map data</title>
+<script src="https://code.jquery.com/jquery.js"></script>
+</head>
+
+<body>
+<script>
+$.getJSON("demo/datalousdatajson.json",function(result)
+	{
+		$('#test').html(JSON.stringify(result, null, 4));
+	}); 
+
+</script>
+<h1>Map Data Object Structure</h1>
+<pre id="test">
+</pre>
+</body>
+</html>

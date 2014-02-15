@@ -1,9 +1,8 @@
 // JavaScript Document
 
 //START DATA////////////////////////////////
-function reporter(core)
+function reporter()
 {
-this.astarcore=core;
 this.kbSize = function( object ) {
 
     var objectList = [];
@@ -35,7 +34,9 @@ this.kbSize = function( object ) {
             }
         }
     }
-    return bytes;
+	
+	kbytes = bytes/1024;
+    return kbytes +" kb";
 	}
 	
 	
