@@ -14,8 +14,8 @@ This application is a  prototype the Datalous javascript object based location m
 
 - **placeData:** this object  assigns and parses  the place map data objects. These objects  are  non-unique locations that can be classified by a master type, however each type can have subsets types. In addition each individual location object  has a unique alphanumeric id along with other properties
 
-```JSON
-ap: [[65,35],[116,36],[116,35],[115,35],[114,35],[113,35],[112,35],[111,35],[110,35],[109,35],
+```JavaScript
+map: [[65,35],[116,36],[116,35],[115,35],[114,35],[113,35],[112,35],[111,35],[110,35],[109,35],
     start: {
         lobby1: {
             x: 64,
