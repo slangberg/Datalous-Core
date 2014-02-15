@@ -27,9 +27,10 @@ If you want the ability to run timers and get map kb loads also include
 ```
 
 ##Datalous Methods##
-```.loadGrid(data)```
+```JavaScript
+.loadGrid(data)
 loads data for closed cells in astar object
-
+```
 **associated input:** 
 - data (object/array) - this is can be object/json of array or pure array
 **associated output:** 
