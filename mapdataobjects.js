@@ -1,12 +1,11 @@
-
-  ///////////////////////////// IMPORTANT NOTICE THIS CODE IS STILL IN DEVOLPMENT AND IS LICENSED //////////////////////////////////////////
- // Datalous by Sam Langberg (samlangberg.com) is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License. //
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-//Application shell//////////////////////////////// this code is the over all controls and data storgage controls all the other 
-var applicationCore = function(core) {
+/*!
+ * Datalous Javascript Mapping Library  v2.0
+ * https://github.com/slangberg/Datalous-Core
+ * Copyright 2013 Sam Langberg (samlangberg.com)
+ * Released under the Creative Commons Attribution-NonCommercial 4.0 International License
+ */
+ 
+var applicationCore = function(core) {//Application shell this code is the over all controls and data storgage controls all the other 
    this.astarcore=core;//this holds all sastar object
    this.loadGrid=function(data)
 	{
@@ -39,7 +38,7 @@ var applicationCore = function(core) {
 			  if(localStorage.getItem("mapdata"))//check to see if map data is in local storage
 			  {
 				 var mapdata = JSON.parse(localStorage.getItem("mapdata"));//parses the jason local storage var
-				 console.log("map data from local");
+				 console.log("map data in local local");
 				 return mapdata;
 			  }//end if has mapdata
 			  
@@ -57,21 +56,16 @@ var applicationCore = function(core) {
 		  }//end dle no lcoal
 	}
 	
-	this.loadData=function(data,skiplocal)//another local data pareseer
+	this.loadData=function(data)//another local data pareseer
 	{
-		if(typeof(Storage)!=="undefined" && skiplocal !== true)
-		  {
+	
 				 this.mapdata = data;
-				 localStorage.setItem("mapdata", JSON.stringify(data));
-				 console.log("map data from input - now saved in local");
-		  }//end if starge
-		else
-		  {
-		  this.mapdata = data;
-		  }//end else starage
-		  
-		 
-			 
+				 console.log(this.mapdata)
+				 	if(typeof(Storage)!=="undefined")
+					  {
+							 localStorage.setItem("mapdata", JSON.stringify(data));
+							 console.log("map data from input - now saved in local");
+					  }//end if starge
 	}//loadData
 	
 	
@@ -243,7 +237,7 @@ function startData()
 	{
 	for (start in this.startdata)
 			{
-				this.astarcore.markGrid(this.startdata[start].x,this.startdata[start].y,'person');
+				this.astarcore.markGrid(this.startdata[start].x,this.startdata[start].y,'place');
 			}
 	}
 	
@@ -468,7 +462,7 @@ this.createGroup=function(attribute,term)//this will create and return an object
 	{
 	for (name in this.persondata)
 			{
-				this.astarcore.markGrid(this.persondata[name].y,this.persondata[name].x,'person');
+				this.astarcore.markGrid(this.persondata[name].x,this.persondata[name].y,'person');
 			}
 	}
 	
@@ -484,18 +478,85 @@ this.createGroup=function(attribute,term)//this will create and return an object
 //END PLACE DATA///////////////////////
 
 
-//PLACE DATA////////////////////////////////
-function userData(core)
+//url DATA////////////////////////////////
+function urlData()
 {
-	this.getUserId=function(data)
+this.pathgen = false;
+this.urlread = false;
+this.cleanurl = true;
+
+this.getUrlVar= function(variable)
 	{
-		if(typeof this.userid == "undefined"){
-		this.userid =  Math.floor(Math.random() * 90000) + 10000;
-		return this.userid;}
+	
+       var urlsobj ={};
+	   var full = window.location.href;
+       var qstring = full.split("?");
+	   if(qstring[1])
+	   {
+		   var vars = qstring[1].split("&");
+		   for (var i=0;i<vars.length;i++) {
+				   var pair = vars[i].split("=");
+				   
+				  urlsobj[pair[0]]=pair[1];
+				  if(pair[0] == variable){return pair[1];}
+		   }
+		   return(false);
+		   this.urlread = true;
+	   }//end if qssting
+	   //this.urlsobj = urlsobj;
+	  // return urlsobj;
+}
+
+this.runUrl=function(calllback)
+{
+	console.log("<--------- start url read --------->");
+	var start = this.getUrlVar("start");
+	var starttype = this.getUrlVar("stype");
+	var target = this.getUrlVar("target");
+	var targettype = this.getUrlVar("ttype");
+	var searchterm = this.getUrlVar("find");
+	var searchscope = this.getUrlVar("scope");
+	var searchaction = this.getUrlVar("action");
+	
+	if(start)
+	{
+		console.log("- url start found:"+ start);
+		if(starttype)
+		{
+		this.cleanurl = false;
+		this.setStart(start,starttype);
+		console.log("- url start type found:"+ starttype);
+		}
 		
-		else{
-		return this.userid;}
+		else
+		{
+			 console.error("url error: no start type found");
+		}
+		
 	}
 	
-}
-//END USER DATA///////////////////////
+	if(target)
+	{
+		console.log("- target found:"+ target);
+		if(targettype)
+		{
+		this.cleanurl = false;
+		console.log("- target type found:"+ targettype);
+		this.setTarget(target,targettype);
+		}
+		
+		else
+		{
+			 console.error("url error: not vaild target type");
+		}
+	}
+	
+	if(this.astarcore.foundstart && this.astarcore.foundtarget)
+	{
+		this.astarcore.runAstar();
+		this.astarcore.genPath();
+		this.pathgen = true}
+	
+	console.log("<--------- end url read --------->");
+}//runUrl
+}//END OF Url DATA///////////////////////
