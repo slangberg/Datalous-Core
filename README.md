@@ -15,5 +15,81 @@ This application is a  prototype the Datalous javascript object based location m
 - **placeData:** this object  assigns and parses  the place map data objects. These objects  are  non-unique locations that can be classified by a master type, however each type can have subsets types. In addition each individual location object  has a unique alphanumeric id along with other properties
 
 ```JSON
-{"map":"[[65,35],[116,36],[116,35],[115,35],[114,35],[113,35],[112,35],[111,35],[110,35],[109,35],[108,35],[107,35],[106,35],[105,35],[104,35],[103,35],[102,35],[101,35],[100,35],[99,35]]","start":{"lobby1":{"x":"64","y":"33","keydirection":"3","id":null},"a2":{"x":"63","y":"18","keydirection":"2","id":null},"stair1":{"x":"96","y":"62","keydirection":"0","id":null}},"place":{"mens":[{"name":"mens room","placetype":"bathroom","x":"23","y":"50","id":"11"},{"name":"Unisex bathroom","placetype":"bathroom","x":"138","y":"66","id":"13"}],"womens":[{"name”:”womens room",”placetype":"bathroom","x":"58","y":"9","id":"9"},{"name":"Womens room","placetype":"bathroom","x":"23","y":"50","id":"11"}]},"person":{"tom good":{"name":"tom good","fname":"Tom","lname":"Good","department":"Administration","position":"Dean","x":"119","y":"37"},"sarah smith":{"name":"sarah smith","fname":"Sarah","lname":"Smith","department":"Administration","position":"Head Of Admissions","x":"56","y":"59"},"chris flero":{"name":"chris flero","fname":"Chris","lname":"Flero","department":"Graphic Design","position":"Professor","x":"121","y":"30"},"sarah donner":{"name":"sarah donner","fname":"Sarah","lname":"Donner","department":"wdim","position":"Professor","x":"51","y":"31"},"frank hicks":{"name":"frank hicks","fname":"Frank","lname":"Hicks","department":"Photography","position":"Professor","x":"79","y":"30"},"tommy ruso":{"name":"tommy ruso","fname":"Tommy","lname":"Ruso","department":"wdim","position":"Student Aid","x":"38","y":"32"},"willam swords":{"name":"willam swords","fname":"Willam","lname":"Swords","department":"Photography","position":"Professor","x":"87","y":"30"},"matt killpatrick":{"name":"matt killpatrick","fname":"Matt","lname":"Killpatrick","department":"Graphic Design","position":"Student Aid","x":"96","y":"16"},"sarah gordon":{"name":"sarah gordon","fname":"Sarah","lname":"Gordon","department":"Administration","position":"Admissions Counselor","x":"38","y":"45"},"barbra james":{"name":"barbra james","fname":"Barbra","lname":"James","department":"Administration","position":"Admissions Counselor","x":"21","y":"44"}}}
+ap: [[65,35],[116,36],[116,35],[115,35],[114,35],[113,35],[112,35],[111,35],[110,35],[109,35],
+    start: {
+        lobby1: {
+            x: 64,
+            y: 33,
+            keydirection: 3,
+            id: null
+        },
+        a2: {
+            x: 63,
+            y: 18,
+            keydirection: 2,
+            id: null
+        },
+    },
+    place: {
+        mens: [
+            {
+                name: mens room,
+                placetype: bathroom,
+                x: 23,
+                y: 50,
+                id: 11
+            },
+            {
+                name: Unisex bathroom,
+                placetype: bathroom,
+                x: 138,
+                y: 66,
+                id: 13
+            },
+            {
+                name: mens room,
+                placetype: bathroom,
+                x: 112,
+                y: 7,
+                id: 15
+            }
+        ],
+        womens: [
+            {
+                name: Womens room,
+                placetype: bathroom,
+                x: 58,
+                y: 9,
+                id: 9
+            },
+            {
+                name: Womens room,
+                placetype: bathroom,
+                x: 23,
+                y: 50,
+                id: 11
+            },
+        ],
+    },
+    person: {
+        tom good: {
+            name: tom good,
+            fname: Tom,
+            lname: Good,
+            department: Administration,
+            position: Dean,
+            x: 119,
+            y: 37
+        },
+        sarah smith: {
+            name: sarah smith,
+            fname: Sarah,
+            lname: Smith,
+            department: Administration,
+            position: Head Of Admissions,
+            x: 56,
+            y: 59
+        }        }
+    }
+}
 ```
