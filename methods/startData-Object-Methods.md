@@ -11,7 +11,7 @@ this sets start data either from this.mapdata are passed in data
 **Associated output:**
 - this.startdata (object/array) start token object collection
 
-###startData.setStartAs(code,type)### 
+###startData.setStartAs(code,type)
 uses code input to set an start token object as the start or target, or returns the found start token object
 
 **Reads from:** 
@@ -30,7 +30,7 @@ Based on type input:
 - find - this.startdata[code] (object)
 
 
-###startData.startFromXY(x,y)### 
+###startData.startFromXY(x,y)
 sets astart start based on input x and y 
 
 **Reads from:** 
@@ -43,7 +43,7 @@ sets astart start based on input x and y
 - this.astarcore.setStart() (method) - uses input x and y to set a start location - this.startFromData(start); (method) - use this.startdata to set target cell
 
 
-###startData.showAllStart()### 
+###startData.showAllStart()
 marks all cells that contain a start token object
 
 **Reads from:** 
@@ -53,7 +53,7 @@ marks all cells that contain a start token object
 - this.astarcore.markGrid() (method) - puts a place flag in selected cell
 
 
-###startData.hideAllStart()### 
+###startData.hideAllStart()
 clears all cells that contain a start token object
 
 **Reads from:** 
