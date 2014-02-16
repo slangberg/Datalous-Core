@@ -11,7 +11,7 @@ this sets this.placedata data either from this.mapdata are passed in data
 **Associated output:**
 - this.placedata (object/array) place object collection
 
-###placeData.setPlaceAs(id, setas)### 
+###placeData.setPlaceAs(id, setas)
 uses id input to set an place object as the start or target, or returns the found place object
 
 **Reads from:** 
@@ -29,7 +29,7 @@ Based on type input:
 - target - astarcore.setTarget(); (method) - uses found objects x and y to set a target location
 - find - returns '''this.placedata[type][object]'''(object)
 
-###placeData.findClosest(type)### 
+###placeData.findClosest(type) 
 loops through all place data to find place object that match type that has the shortest path to set start
 
 **Reads from:** 
@@ -47,7 +47,7 @@ loops through all place data to find place object that match type that has the s
 **Associated output:** 
 - returns '''this.placedata[type][shorestindex]'''(object)
 
-###placeData.markAll(type,flagtype)### 
+###placeData.markAll(type,flagtype)
 marks all cells that contain a place token type object
 
 **Reads from:** 
@@ -71,7 +71,7 @@ marks all cells that contain a place token type object
 - this.astarcore.markGrid() (method) - puts a place flag in selected cell
 
 
-###placeData.clearAll()### 
+###placeData.clearAll()
 clears html of all cells that contain a place token type object
 
 **Reads from:** 
