@@ -20,7 +20,7 @@ creates an plain array of the person data index properties to be used in third p
 **Associated output:**
 - this.namearray (array) an array of all index properties of this.persondata 
 
-###personData.setPersonAs(name,action)### 
+###personData.setPersonAs(name,action) 
 uses code input to set an start token object as the start or target, or returns the found start token object
 
 **Reads from:** 
@@ -38,7 +38,7 @@ Based on type input:
 - target - astarcore.setTarget(); (method) - uses found objects x and y to set a target location
 - find - this.person[name] (object)
 
-###personData.createGroup(attribute,term)### 
+###personData.createGroup(attribute,term)
 This will create and return an object made of of pepole whos proived attribute matchs a provided term
 
 **Reads from:** 
