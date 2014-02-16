@@ -56,11 +56,10 @@ var applicationCore = function(core) {//Application shell this code is the over 
 		  }//end dle no lcoal
 	}
 	
-	this.loadData=function(data)//another local data pareseer
+	this.loadData=function(data)//loads map data
 	{
 	
 				 this.mapdata = data;
-				 console.log(this.mapdata)
 				 	if(typeof(Storage)!=="undefined")
 					  {
 							 localStorage.setItem("mapdata", JSON.stringify(data));
@@ -336,7 +335,7 @@ this.findClosest=function (type)//find the closest location of a type
 	}//end else
 }//end findClosest
 
-this.markAll=function (type,flagtype,starttag,content,endtag)//puts a flag in cells for  all loactions of a  type
+this.markAll=function (type,flagtype)//puts a flag in cells for  all loactions of a  type
 {
 	if(typeof this.mapdata["place"] === "undefined"){console.error("markAll Failed: Not vaild place type"); return false;}//end if
 	else{
@@ -344,15 +343,7 @@ this.markAll=function (type,flagtype,starttag,content,endtag)//puts a flag in ce
 		{
 		x = this.placedata[type][i].x
 		y = this.placedata[type][i].y
-			if(flagtype !== "custom")
-			{
-				this.astarcore.markGrid(x,y,flagtype);
-			}
-			
-			else
-			{
-				this.astarcore.markGridCustom(x,y,starttag,content,endtag);
-			}
+		this.astarcore.markGrid(x,y,flagtype);
 		}//end loop
 	}//end else
 }//end mark all
@@ -374,11 +365,11 @@ this.clearAll=function (type)//puts a flag in cells for  all loactions of a  typ
 }
 //END PLACE DATA///////////////////////
 
-//PLACE DATA////////////////////////////////
+//PERSON DATA////////////////////////////////
 function personData()
 {
 //this.astarcore=core;
-this.nameArray=new Array();
+
 this.setPersonData=function(data)
 {
 	if(!data)//checks to see if data is passed in then sets persondata
@@ -404,12 +395,13 @@ this.setPersonData=function(data)
 
 this.createNameArray=function()
 {
+	this.namearray=new Array();
 	for (property in this.persondata)//creates an plain array of the person data indexed vaule to ne used in third party aout complete search functions can use arry index to find data in objedt
 	{
-		this.nameArray.push(property);		
+		this.namearray.push(property);		
 	}//end loop
 	
-	return this.nameArray;
+	return this.namearray;
 }//createNameArray
 
 
@@ -514,9 +506,6 @@ this.runUrl=function(calllback)
 	var starttype = this.getUrlVar("stype");
 	var target = this.getUrlVar("target");
 	var targettype = this.getUrlVar("ttype");
-	var searchterm = this.getUrlVar("find");
-	var searchscope = this.getUrlVar("scope");
-	var searchaction = this.getUrlVar("action");
 	
 	if(start)
 	{

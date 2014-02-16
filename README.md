@@ -36,66 +36,43 @@ var reporter=new reporter();
 var App = $.extend({},urldata, application, placedata,startdata,pepoledata,reporter);
 ```
 
-##applicationCore Object Methods##
+##Datalous Methods##
+1. [applicationCore Object Methods](https://github.com/slangberg/Datalous-Core/blob/master/methods/startData-Object-Methods.md)
+2. [startData Object Methods](https://github.com/slangberg/Datalous-Core/blob/master/methods/startData-Object-Methods.md)
+3. [placeData Object Methods](https://github.com/slangberg/Datalous-Core/blob/master/methods/placeData-Object-Methods.md)
+3. [urlData Object Methods](https://github.com/slangberg/Datalous-Core/blob/master/methods/urlData-Object-Methods.md)
+
+##Datalous Map data Object Structure ##
 ```JavaScript
-applicationCore.loadData(mapdata)
+mapdata() = {
+	map:[[y,x]];
+	start: {
+        a1: {
+            x: 36,
+            y: 37,
+            id: 12,
+        },
+    }, 
+    place: {
+        mens: [
+            {
+                name: mens room,
+                placetype: bathroom,
+                x: 100,
+                y: 50,
+                id: 11
+            }
+        }. 
+    person: {
+        tom good: {
+            name: tom good,
+            fname: Tom,
+            lname: Good,
+            department: Administration,
+            position: Dean,
+            x: 119,
+            y: 37
+        }
+    }
+}
 ```
-this loads external map data into the application for access by the rest of the library 
-
-**Associated input:** 
-- mapdata (object/array) see example at [mapdatastructure.md](https://github.com/slangberg/Datalous-Core/blob/master/datastructure.md)
-    - map (object) - closed cells
-    - start (object) - start token object collection
-    - place (object) - place object collection
-    - person (object) - person object collection- t
-
-**associated output:**
-- localStorage.setItem("mapdata"); / false
-
-```JavaScript
-applicationCore.loadGrid(data)
-```
-loads data for closed cells in astar object
-
-**Associated input:** 
-- data (object/array) - this is can be object/json of array or pure array
-  
-**Associated output:** 
-- this.mapdata["map"] (object) - this is an interanl object created witht he loadData method
-
-```JavaScript
-applicationCore.getFromLocalData()
-```
-this checks local storage for map data then returns saved map data or false 
-
-**Reads from:** 
-- localStorage.getItem("mapdata")
-
-**Associated input:** 
-- none
-
-**associated output:**
-- returns localStorage.getItem("mapdata"); / false
-
-```JavaScript
-applicationCore.construct(mapdata)
-```
-this master function takes inputed map data and then runs all data constuct methods
-
-**Associated input:** 
-- mapdata (object/array) see example at [mapdatastructure.md](https://github.com/slangberg/Datalous-Core/blob/master/datastructure.md)
-    - map (object) - closed cells
-    - start (object) - start token object collection
-    - place (object) - place object collection
-    - person (object) - person object collection- t
-
-**Associated output:**
-- this.loadData(mapdata) (method) - sets matdata property
-- this.astarcore.genGrid(); (method) - generates astar cell object grid
-- this.loadGrid(); (method) - loads closed cells into astar cell object grid
-- this.setStartData(); (method) - sets startdata person data property
-- this.setPlaceData(); (method) - sets placedata person data property
-- this.setPersonData(); (method) - sets persondata person data property
-
-
-
